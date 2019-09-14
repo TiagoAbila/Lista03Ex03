@@ -1,3 +1,6 @@
+
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -60,6 +63,11 @@ public class View extends javax.swing.JFrame {
         jLabel5.setText("Prioridade");
 
         btnCriar.setText("Criar");
+        btnCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +126,20 @@ public class View extends javax.swing.JFrame {
     private void tfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDataActionPerformed
+
+    private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
+        try{
+        Compromisso compromisso = new Compromisso();
+        compromisso.setData(Date.parseDate(tfData.getText()));
+        compromisso.setDescricao(tfDescricao.getText());
+        compromisso.setTempoEst(Integer.parseInt(tfTempo.getText()));
+        compromisso.setPrioridade(tfPrioridade.getText());
+        compromisso.setHora(tfHora.getText());
+        }
+        catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_btnCriarActionPerformed
 
     /**
      * @param args the command line arguments

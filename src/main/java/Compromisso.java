@@ -3,6 +3,14 @@ import java.util.Date;
 
 public class Compromisso {
 
+    public Compromisso(Date data, String descricao, int tempoEst, String pioridade, String hora ){
+        
+    }
+
+    Compromisso() {
+       
+    }
+    
     /**
      * @return the data
      */
