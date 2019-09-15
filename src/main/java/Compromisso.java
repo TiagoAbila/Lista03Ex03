@@ -1,28 +1,25 @@
-
+// Alunos: Tiago Abila e Pedro Manoel
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Compromisso {
 
-    public Compromisso(Date data, String descricao, int tempoEst, String pioridade, String hora ){
+  
+    private String descricao;
+    private int tempo;
+    private String prioridade;
+    private LocalTime hora;
+    
+    public Compromisso(String descricao, int tempoEst, String prioridade, LocalTime hora ){
+        setDescricao(descricao);
+        setTempoEst(tempoEst);
+        setPrioridade(prioridade);
+        setHora(hora);
         
     }
 
-    Compromisso() {
+    public Compromisso() {
        
-    }
-    
-    /**
-     * @return the data
-     */
-    public Date getData() {
-        return data;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(Date data) {
-        this.data = data;
     }
 
     /**
@@ -43,14 +40,14 @@ public class Compromisso {
      * @return the tempoEst
      */
     public int getTempoEst() {
-        return tempoEst;
+        return tempo;
     }
 
     /**
      * @param tempoEst the tempoEst to set
      */
     public void setTempoEst(int tempoEst) {
-        this.tempoEst = tempoEst;
+        this.tempo = tempoEst;
     }
 
     /**
@@ -70,21 +67,16 @@ public class Compromisso {
     /**
      * @return the hora
      */
-    public String getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
     /**
      * @param hora the hora to set
      */
-    public void setHora(String hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-    
-    private Date data;
-    private String descricao;
-    private int tempoEst;
-    private String prioridade;
-    private String hora;
+     
     
 }
