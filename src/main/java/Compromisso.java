@@ -12,20 +12,6 @@ public class Compromisso {
     }
     
     /**
-     * @return the data
-     */
-    public Date getData() {
-        return data;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    /**
      * @return the descricao
      */
     public String getDescricao() {
@@ -81,7 +67,6 @@ public class Compromisso {
         this.hora = hora;
     }
     
-    private Date data;
     private String descricao;
     private int tempoEst;
     private String prioridade;
