@@ -28,7 +28,11 @@ public class DataAgenda {
     }
 
     public int getTempoMedio() {
-        return 0;
+        int somaTempo = 0;
+        for (Compromisso objCompromisso : hCompromissos.values()) {
+            somaTempo+=objCompromisso.getTempoEst();
+        }
+        return somaTempo;
     }
 
     public void addCompromisso(Compromisso compromisso) {
@@ -39,8 +43,21 @@ public class DataAgenda {
         }
     }
 
+    public int getQtdCompromissosPrioridades(char prioridade){
+        int qtdPrioridades = 0;
+        for (Compromisso objCompromisso: hCompromissos.values()) {
+            if (objCompromisso.getPrioridade().chars().equals(prioridade)){
+                qtdPrioridades++;
+            }
+        }
+        return qtdPrioridades;
+    }
+    
     public ArrayList getCompromissosPrioridade(char proridade) {
-      
-        return null;
+        ArrayList <String> listaPrioridades = new ArrayList();
+        for (Compromisso objCompromisso :hCompromissos.values()) {
+            listaPrioridades.add(objCompromisso.getPrioridade());
+        }
+        return listaPrioridades;
     }
 }
