@@ -173,19 +173,6 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        try {
-			DataAgenda data = new DataAgenda();
-			data.setData(LocalDate.parse(tfData.getText()));
-			agenda.put(data.getData(), data);
-			jOptionPane1.showMessageDialog(this, "Data cadastrada");
-		} catch (IllegalArgumentException iae) {
-			jOptionPane1.showMessageDialog(this, iae.getMessage());
-		}
-
-      
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void btnAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataActionPerformed
         DataAgenda dataPesq = agenda.get(tfData.getText());
 		String str;
 		if (dataPesq == null) {
@@ -194,6 +181,18 @@ public class View extends javax.swing.JFrame {
 			str = dataPesq.exibir();
 		}
 		jOptionPane1.showMessageDialog(this, str);
+              
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataActionPerformed
+        try {
+			DataAgenda data = new DataAgenda();
+			data.setData(LocalDate.parse(tfData.getText()));
+			agenda.put(data.getData(), data);
+			jOptionPane1.showMessageDialog(this, "Data cadastrada");
+		} catch (IllegalArgumentException iae) {
+			jOptionPane1.showMessageDialog(this, iae.getMessage());
+		}
     }//GEN-LAST:event_btnAddDataActionPerformed
 
     /**
