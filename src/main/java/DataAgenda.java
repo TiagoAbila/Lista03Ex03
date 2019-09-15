@@ -10,6 +10,7 @@ public class DataAgenda {
     private LocalDate data;
     private String efemeride;
     Map<LocalDate, Compromisso> hCompromissos = new HashMap<LocalDate, Compromisso>();
+    private byte indice = 0;
 
     public LocalDate getData() {
         return data;
@@ -60,4 +61,13 @@ public class DataAgenda {
         }
         return listaPrioridades;
     }
+    
+    public String exibir() {
+		String retorno = "Data: " + this.getData() 
+						+ "\nCompromissos:";
+		for (int i = 0; i < this.indice; i++) {
+			retorno += "\n" + this.datas[i].exibir();
+		}
+		return retorno;
+	}
 }
