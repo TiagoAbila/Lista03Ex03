@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 public class View extends javax.swing.JFrame {
 
-    private HashMap<String, DataAgenda> agenda = new HashMap();
+    private HashMap<LocalDate, DataAgenda> agenda = new HashMap();
     private DataAgenda data;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     /**
@@ -148,7 +148,7 @@ public class View extends javax.swing.JFrame {
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         Compromisso c;
 		try {
-			c = new Compromisso(tfDescricao.getText(), tfPrioridade.getText(), tfHora.getText(), Integer.parse(tfTempo.getText()));
+			c = new Compromisso(tfDescricao.getText(), tfPrioridade.getText(), LocalTime.parse(tfHora.getText()), Integer.parseInt(tfTempo.getText()));
 			data.addCompromisso(c);
 			jOptionPane1.showMessageDialog(this, "Compromisso inserido");
 		} catch (NullPointerException npe) {
