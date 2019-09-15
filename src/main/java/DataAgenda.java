@@ -30,7 +30,7 @@ public class DataAgenda {
     public int getTempoMedio() {
         int somaTempo = 0;
         for (Compromisso objCompromisso : hCompromissos.values()) {
-            somaTempo+=objCompromisso.getTempoEst();
+            somaTempo+=objCompromisso.getTempo();
         }
         return somaTempo;
     }
