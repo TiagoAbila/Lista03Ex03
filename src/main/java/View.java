@@ -1,18 +1,25 @@
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.HashMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author User
  */
 public class View extends javax.swing.JFrame {
 
+    private HashMap<String, DataAgenda> agenda = new HashMap();
+    private DataAgenda data;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     /**
      * Creates new form View
      */
@@ -41,6 +48,7 @@ public class View extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tfPrioridade = new javax.swing.JTextField();
         btnCriar = new javax.swing.JButton();
+        jOptionPane1 = new javax.swing.JOptionPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +61,11 @@ public class View extends javax.swing.JFrame {
         });
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Hora");
 
@@ -88,7 +101,9 @@ public class View extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(tfPrioridade)
                     .addComponent(btnCriar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(536, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                .addComponent(jOptionPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,13 +115,16 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsultar)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jOptionPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -128,18 +146,32 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_tfDataActionPerformed
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
-        try{
-        Compromisso compromisso = new Compromisso();
-        compromisso.setData(Date.parseDate(tfData.getText()));
-        compromisso.setDescricao(tfDescricao.getText());
-        compromisso.setTempoEst(Integer.parseInt(tfTempo.getText()));
-        compromisso.setPrioridade(tfPrioridade.getText());
-        compromisso.setHora(tfHora.getText());
-        }
-        catch(Exception e){
-            
-        }
+        Compromisso c;
+		try {
+			c = new Compromisso(tfDescricao.getText(), tfPrioridade.getText(), tfHora.getText(), Integer.parse(tfTempo.getText()));
+			data.addCompromisso(c);
+			jOptionPane1.showMessageDialog(this, "Compromisso inserido");
+		} catch (NullPointerException npe) {
+			jOptionPane1.showMessageDialog(this, "Compromisso não foi cadastrado");
+		} catch (DateTimeParseException exc) {
+			jOptionPane1.showMessageDialog(this, "Data inválida");
+		} catch (IllegalArgumentException exc) {
+			jOptionPane1.showMessageDialog(this, exc.getMessage());
+		}
     }//GEN-LAST:event_btnCriarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        try {
+			DataAgenda data = new DataAgenda();
+			data.setData(LocalDate.parse(tfData.getText()));
+			agenda.put(data.getData(), data);
+			jOptionPane1.showMessageDialog(this, "Data cadastrada");
+		} catch (IllegalArgumentException iae) {
+			jOptionPane1.showMessageDialog(this, iae.getMessage());
+		}
+
+      
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,6 +216,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JTextField tfData;
     private javax.swing.JTextField tfDescricao;
     private javax.swing.JTextField tfHora;

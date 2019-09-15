@@ -10,15 +10,15 @@ public class Compromisso {
     private String prioridade;
     private LocalTime hora;
     
-    public Compromisso(String descricao, int tempoEst, String prioridade, LocalTime hora ){
+
+    public Compromisso(String descricao, String prioridade, LocalTime hora, int tempo) {
         setDescricao(descricao);
-        setTempoEst(tempoEst);
+        setTempo(tempo);
         setPrioridade(prioridade);
         setHora(hora);
-        
     }
-
-    public Compromisso() {
+    
+    Compromisso() {
        
     }
 
@@ -39,15 +39,15 @@ public class Compromisso {
     /**
      * @return the tempoEst
      */
-    public int getTempoEst() {
+    public int getTempo() {
         return tempo;
     }
 
     /**
-     * @param tempoEst the tempoEst to set
+     * @param tempo the tempoEst to set
      */
-    public void setTempoEst(int tempoEst) {
-        this.tempo = tempoEst;
+    public void setTempo(int tempo) {
+        this.tempo = tempo;
     }
 
     /**
@@ -77,6 +77,4 @@ public class Compromisso {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-     
-    
 }
