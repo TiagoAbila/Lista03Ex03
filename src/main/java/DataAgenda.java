@@ -32,7 +32,7 @@ public class DataAgenda {
         for (Compromisso objCompromisso : hCompromissos.values()) {
             somaTempo+=objCompromisso.getTempo();
         }
-        return somaTempo;
+        return somaTempo/hCompromissos.size();
     }
 
     public void addCompromisso(Compromisso compromisso) {
