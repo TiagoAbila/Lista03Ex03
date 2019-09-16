@@ -8,11 +8,11 @@ import java.util.Map;
 // Alunos: Tiago Abila e Pedro Manoel
 public class DataAgenda {
 
-    private LocalDate data;
-    private String efemeride;
+    public LocalDate data;
+    public String efemeride;
 
     private Map<LocalTime, Compromisso> hCompromissos = new HashMap<LocalTime, Compromisso>();
-    private byte indice = 0;
+
 
 
     public DataAgenda(LocalDate data, String efemeride){
@@ -78,12 +78,7 @@ public class DataAgenda {
         return hCompromissos;
     }
     
-    public String exibir() {
-		String retorno = "Data: " + this.getData() 
-						+ "\nCompromissos:";
-		for (int i = 0; i < this.indice; i++) {
-			retorno += "\n" + this.datas[i].exibir();
-		}
-		return retorno;
-	}
+   public String exibir() {
+    	return this.data+" em "+this.data;
+    }
 }

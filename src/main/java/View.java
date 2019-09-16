@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 public class View extends javax.swing.JFrame {
 
-    private HashMap<LocalDate, DataAgenda> agenda = new HashMap();
+    private HashMap<LocalDate, Agenda> agenda = new HashMap();
     private DataAgenda data;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     /**
@@ -159,8 +159,9 @@ public class View extends javax.swing.JFrame {
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         Compromisso c;
+        char p = tfPrioridade.getText().charAt(0);
 		try {
-			c = new Compromisso(tfDescricao.getText(), tfPrioridade.getText(), LocalTime.parse(tfHora.getText()), Integer.parseInt(tfTempo.getText()));
+			c = new Compromisso(tfDescricao.getText(), p, LocalTime.parse(tfHora.getText()), Integer.parseInt(tfTempo.getText()));
 			data.addCompromisso(c);
 			jOptionPane1.showMessageDialog(this, "Compromisso inserido");
 		} catch (NullPointerException npe) {
@@ -173,7 +174,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        DataAgenda dataPesq = agenda.get(tfData.getText());
+        Agenda dataPesq = agenda.get(tfData.getText());
 		String str;
 		if (dataPesq == null) {
 			str = "Data não localizado";

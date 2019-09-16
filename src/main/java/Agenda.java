@@ -8,6 +8,7 @@ public class Agenda {
     private DataAgenda[] datas = new DataAgenda[31];
     private int contador = 0;
     private boolean achou = false;
+    private byte indice = 0;
     
 
     public Compromisso getMenorCompromisso(){
@@ -45,6 +46,14 @@ public class Agenda {
     }
 
     
-    
+     public String exibir() {
+         DataAgenda a;
+		String retorno = "Data: " + a.getData() 
+						+ "\nCompromissos:";
+		for (int i = 0; i < this.indice; i++) {
+			retorno += "\n" + this.datas[i].exibir();
+		}
+		return retorno;
+	}
     
 }
