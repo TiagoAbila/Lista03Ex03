@@ -7,11 +7,11 @@ public class Compromisso {
   
     private String descricao;
     private int tempo;
-    private String prioridade;
+    private char prioridade;
     private LocalTime hora;
     
 
-    public Compromisso(String descricao, String prioridade, LocalTime hora, int tempo) {
+    public Compromisso(String descricao, char prioridade, LocalTime hora, int tempo) {
         setDescricao(descricao);
         setTempo(tempo);
         setPrioridade(prioridade);
@@ -53,14 +53,14 @@ public class Compromisso {
     /**
      * @return the prioridade
      */
-    public String getPrioridade() {
+    public char getPrioridade() {
         return prioridade;
     }
 
     /**
      * @param prioridade the prioridade to set
      */
-    public void setPrioridade(String prioridade) {
+    public void setPrioridade(char prioridade) {
         this.prioridade = prioridade;
     }
 

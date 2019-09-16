@@ -1,5 +1,6 @@
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +10,16 @@ public class DataAgenda {
 
     private LocalDate data;
     private String efemeride;
-    Map<LocalDate, Compromisso> hCompromissos = new HashMap<LocalDate, Compromisso>();
+    private Map<LocalTime, Compromisso> hCompromissos = new HashMap<LocalTime, Compromisso>();
 
+    public DataAgenda(LocalDate data, String efemeride){
+        setData(data);
+        setEfemeride(efemeride);
+    }
+    DataAgenda(){
+        
+    }
+    
     public LocalDate getData() {
         return data;
     }
@@ -30,34 +39,38 @@ public class DataAgenda {
     public int getTempoMedio() {
         int somaTempo = 0;
         for (Compromisso objCompromisso : hCompromissos.values()) {
-            somaTempo+=objCompromisso.getTempo();
+            somaTempo += objCompromisso.getTempo();
         }
-        return somaTempo/hCompromissos.size();
+        return somaTempo / hCompromissos.size();
     }
 
     public void addCompromisso(Compromisso compromisso) {
         try {
-            hCompromissos.put(getData(), compromisso);
+            hCompromissos.put(compromisso.getHora(), compromisso);
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public int getQtdCompromissosPrioridades(char prioridade){
+    public int getQtdCompromissosPrioridades(char prioridade) {
         int qtdPrioridades = 0;
-        for (Compromisso objCompromisso: hCompromissos.values()) {
-            if (objCompromisso.getPrioridade().chars().equals(prioridade)){
+        for (Compromisso objCompromisso : hCompromissos.values()) {
+            if (objCompromisso.getPrioridade()== prioridade) {
                 qtdPrioridades++;
             }
         }
         return qtdPrioridades;
     }
-    
+
     public ArrayList getCompromissosPrioridade(char proridade) {
-        ArrayList <String> listaPrioridades = new ArrayList();
-        for (Compromisso objCompromisso :hCompromissos.values()) {
-            listaPrioridades.add(objCompromisso.getPrioridade());
+        ArrayList<String> listaPrioridades = new ArrayList();
+        for (Compromisso objCompromisso : hCompromissos.values()) {
+            listaPrioridades.add(""+objCompromisso.getPrioridade());
         }
         return listaPrioridades;
+    }
+
+    public Map<LocalTime, Compromisso> gethCompromissos() {
+        return hCompromissos;
     }
 }
